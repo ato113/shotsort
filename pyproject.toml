@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "shotsort"
+version = "0.1.0"
+description = "Rename and organize screenshots by what's in them, using OCR."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "Arda Ceylan", email = "ceylanarda15@gmail.com" }]
+keywords = ["screenshots", "ocr", "organizer", "cli", "tesseract", "productivity"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Utilities",
+]
+dependencies = ["pytesseract>=0.3.10", "Pillow>=9.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff>=0.4"]
+
+[project.urls]
+Homepage = "https://github.com/ato113/shotsort"
+Issues = "https://github.com/ato113/shotsort/issues"
+
+[project.scripts]
+shotsort = "shotsort.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/shotsort"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
